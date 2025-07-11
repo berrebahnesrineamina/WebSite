@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-key')
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ['https://oyster-app-afbz2.ondigitalocean.app/','wathaiqplus.website','www.wathaiqplus.website','167.172.244.253','www.wathaiqplus.dz','wathaiqplus.dz',]  # ou le nom de ton domaine Render
+ALLOWED_HOSTS = ['localhost','167.172.244.253','wathaiqplus.space','www.wathaiqplus.space']  # ou le nom de ton domaine Render
 
 
 INSTALLED_APPS = [
