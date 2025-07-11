@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-key')
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ['wathaiqplus.onrender.com']  # ou le nom de ton domaine Render
+ALLOWED_HOSTS = ['*',]  # ou le nom de ton domaine Render
 
 
 INSTALLED_APPS = [
