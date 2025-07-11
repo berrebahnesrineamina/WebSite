@@ -1,0 +1,22 @@
+<!-- base3.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نموذج التسجيل</title>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}?v=2">
+  <!-- Correction du lien Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body dir="rtl">
+
+  {% block content %}
+  <!-- المحتوى الخاص بكل صفحة سيتم إدخاله هنا -->
+  {% endblock content %}
+
+  <!-- <script defer src="{% static 'js/registration.js' %}"></script> -->
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!-- login.html -->
+{% extends "pages/base2.html" %}
+{% block title %}تسجيل الدخول{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+  <a href="{% url 'home' %}" class="back-arrow" title="العودة للصفحة الرئيسية">
+  <i class="fas fa-arrow-left"></i>
+  </a>
+ 
+  <div class="login-box">
+    <h2>تسجيل الدخول</h2>
+    <p class="subtitle">قم بتسجيل الدخول إلى حسابك للمتابعة</p>
+
+    <form method="POST" id="loginForm">
+      {% csrf_token %}
+      <div class="input-group">
+        <label for="email"><i class="fa fa-envelope"></i> البريد الإلكتروني</label>
+        <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" required />
+      </div>
+
+      <div class="input-group">
+        <label for="password"><i class="fa fa-lock"></i> كلمة المرور</label>
+        <input type="password" id="password" name="password" placeholder="كلمة المرور" required />
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" id="remember" name="remember" /> تذكرني</label>
+        <a href="{% url 'reset_password1' %}">هل نسيت كلمة المرور؟</a>
+      </div>
+
+      <button type="submit" class="login-btn">تسجيل الدخول</button>
+
+      <p class="signup-text">ليس لديك حساب؟ <a href="{% url 'signup' %}">سجل الآن</a></p>
+    </form>
+  </div>
+</div>
+{% endblock content %}

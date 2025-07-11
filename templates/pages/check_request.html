@@ -1,0 +1,73 @@
+<!-- check_request.html -->
+
+{% extends "pages/base7.html" %}
+{% load static %}
+
+{% block title %}تأكيد المستخدم{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h1>تأكيد المستخدم</h1>
+      <p class="subtitle">يرجى التحقق من المعلومات والملفات قبل التأكيد</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="section">
+        <h2>المعلومات الشخصية</h2>
+        <ul>
+          <li><strong>اللقب: </strong> {{ client.family_name }}</li>
+          <li><strong>الاسم: </strong> {{ client.full_name }}</li>
+          <li><strong>الولاية:</strong> {{ client.state }}</li>
+          <li><strong>رقم الهاتف:</strong> {{ client.phone_number }}</li>
+          <li><strong>تاريخ الميلاد:</strong> {{ client.birthday }}</li>
+          <li><strong>الرقم الوطني:</strong> {{ client.nin_number }}</li>
+          <li><strong>تاريخ الخدمة:</strong> {{ service.created_at|date:"d/m/Y H:i" }}</li>
+          <li><strong>نوع الخدمة:</strong> {{ service.get_service_type_display }}</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>معلومات إضافية</h2>
+        <textarea readonly>{{ service.additional_text }}</textarea>
+
+        {% if service.uploaded_file %}
+          <div class="file-upload">
+            📎 <a href="{{ service.uploaded_file.url }}" target="_blank">عرض الملف المرفوع</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <form method="post" id="validation-form">
+      {% csrf_token %}
+
+      <div id="rejection-reason" style="display:none; margin-top:15px;">
+        <label for="reason">سبب الرفض :</label><br>
+        <textarea name="reason" rows="4" cols="50" placeholder="اشرح سبب رفض الطلب..."></textarea>
+      </div>
+
+      <div class="actions" style="margin-top:15px;">
+        <button type="submit" name="accept" class="btn validate">تأكيد</button>
+        <button type="submit" name="reject" class="btn reject" onclick="showReason(event)">رفض</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function showReason(event) {
+      // إظهار مربع النص لسبب الرفض
+      document.getElementById('rejection-reason').style.display = 'block';
+
+      // منع الإرسال الفوري للنموذج
+      event.preventDefault();
+
+      // تغيير زر الرفض ليقوم بالإرسال بعد كتابة السبب
+      const form = document.getElementById('validation-form');
+      const rejectBtn = event.target;
+      rejectBtn.onclick = null; // إزالة الحدث الحالي لمنع التكرار
+      rejectBtn.innerText = "تأكيد الرفض";
+      rejectBtn.type = "submit";
+    }
+  </script>
+{% endblock %}

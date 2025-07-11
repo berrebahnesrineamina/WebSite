@@ -1,0 +1,112 @@
+<!-- home.html -->
+{% extends "pages/base1.html" %}
+{% load static %}
+
+{% block title %}الرئيسية - وثيق+{% endblock %}
+
+{% block content %}
+<section class="hero" id="home" style="background-image: url('{% static 'image/home1.jpg' %}'); background-size: cover; background-position: center; height: 90vh; display: flex; align-items: center; justify-content: center; position: relative;">
+    <div class="overlay">
+        <h1>وثائق+ بسهولة<br />وإيمان بطمأنينة</h1>
+        <p>بسّط إجراءاتك الإدارية مع <strong>وثائق+</strong></p>
+        <a href="{% url 'signup' %}" class="cta-button">إنشاء حساب</a>
+    </div>
+</section>
+
+<section class="features" dir="rtl">
+    <h2>لماذا نُعدّ <span class="highlight">الخيار الأمثل</span> لك؟</h2>
+    <div class="container">
+        <div class="card">
+            <div class="icon">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/scales.png" alt="أيقونة الإرشاد"/>
+            </div>
+            <h3>جودة واحترافية</h3>
+            <p>كل وثيقة يتم إعدادها بعناية من قبل خبراء، لتكون جاهزة للاستخدام الرسمي دون الحاجة إلى تعديل كبير</p>
+            <a href="#">اقرأ المزيد <span>➜</span></a>
+        </div>
+
+        <div class="card">
+            <div class="icon">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/scales.png" alt="أيقونة الراحة"/>
+            </div>
+            <h3>توفير الوقت والجهد</h3>
+            <p>بدلاً من البحث أو كتابة الوثائق من الصفر، نوفر لك مكتبة غنية جاهزة للتحميل الفوري</p>
+            <a href="#">اقرأ المزيد <span>➜</span></a>
+        </div>
+
+        <div class="card">
+            <div class="icon">
+                <img src="https://img.icons8.com/ios-filled/50/FFFFFF/scales.png" alt="أيقونة الشفافية"/>
+            </div>
+            <h3>خدمة مخصصة</h3>
+            <p>يمكنك طلب وثائق خاصة تناسب حالتك، وسنقوم بإعدادها لك خلال وقت قصير.</p>
+            <a href="#">اقرأ المزيد <span>➜</span></a>
+        </div>
+    </div>
+</section>
+
+<section class="path-section" dir="rtl">
+    <div class="image-container">
+        <img src="{% static 'image/path.PNG' %}" alt="توضيح التسجيل" />
+    </div>
+    <div class="text-content">
+        <h2>مسارك <span class="highlight">البسيط</span> في كل خطوة من الإجراءات الإدارية <span class="highlight">التسجيل</span></h2>
+        <p>مساحة آمنة لتقديم طلباتك عبر الإنترنت</p>
+        <p>اختر، املأ، وأرسل - في بضع نقرات فقط</p>
+        <p>تلقَّ الرد عبر البريد الإلكتروني بسرعة وكفاءة</p>
+        <p>وفّر الوقت وتجنب التنقل</p>
+        <div class="buttons">
+            <a href="{% url 'signup' %}" class="cta-button">سجّل الآن</a>
+            <button class="btn secondary">عرض التفاصيل</button>
+        </div>
+    </div>
+</section>
+
+<section class="equal-chance-section" dir="rtl">
+    <div class="text-content">
+        <h2>فرصتك <span class="highlight">المتساوية</span>: كل متقدِّم <span class="highlight">يُهم</span></h2>
+        <p>وثائق+ هي منصة رقمية مبتكرة تهدف إلى تسهيل الوصول إلى المستندات والنماذج الإدارية والتربوية والتنظيمية بشكل احترافي وموثوق. تم تصميم المنصة لتكون أداة شاملة تُمكّن الأفراد، الإدارات، والهيئات من تحميل، حفظ، ومشاركة الوثائق المهمة بكل سهولة وأمان.
+
+تسعى وثائق+ إلى رقمنة الإجراءات التقليدية وتوفير تجربة مستخدم سلسة من خلال واجهة بسيطة، وخدمات ذكية مثل البحث المتقدم، التصنيفات المنظمة، ونظام إشعارات لتنبيه المستخدمين بأحدث التحديثات والوثائق.
+        </p>
+    </div>
+</section>
+
+<section class="faq" id="faq" dir="rtl">
+    <h3>الأسئلة <span class="highlight">الشائعة</span></h3>
+    <div class="faq-container">
+        <div class="faq-item active">
+            <div class="faq-question">
+                <span class="faq-icon"></span>
+                <span class="faq-text">ما هي منصة وثائق+؟</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-bar"></div>
+                <p>وثائق+ هي منصة إلكترونية تهدف إلى توفير الوثائق والنماذج الجاهزة بمختلف أنواعها (إدارية، قانونية، تربوية...) بطريقة سهلة وآمنة للمستخدمين في الجزائر</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="faq-icon"></span>
+                <span class="faq-text">هل استخدام المنصة مجاني؟</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-bar"></div>
+                <p>نعم، توفر وثائق+ العديد من الوثائق مجانًا، مع إمكانية وجود قسم مميز يحتوي على وثائق احترافية تتطلب اشتراكًا رمزيًا لدعم استمرارية المنصة</p>
+            </div>
+        </div>
+
+                <div class="faq-item">
+            <div class="faq-question">
+                <span class="faq-icon"></span>
+                <span class="faq-text">هل يمكنني طلب وثيقة غير موجودة في المنصة؟</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-bar"></div>
+                <p>نعم، يمكنك إرسال طلبك عبر صفحة "طلب وثيقة خاصة"، وسيتواصل معك فريقنا خلال 24 إلى 48 ساعة لتوفيرها إن أمكن</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

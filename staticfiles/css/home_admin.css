@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  direction: rtl;
+  background: #f9f9f9;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #8d5c7c;
+  color: #fff;
+  padding: 20px;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.profile h2 {
+  font-size: 24px;
+}
+
+.profile .name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.profile .email {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-top: 20px;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+  position: relative;
+}
+
+.logout {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.logout form {
+  margin-right: auto; /* pousse le bouton le plus à gauche possible */
+}
+
+.logout button {
+  background-color: #b28ba5;   /* couleur de fond */
+  border: none;                /* pas de bordure */
+  padding: 10px 20px;          /* espace intérieur */
+  color: white;                /* texte blanc */
+  border-radius: 20px;         /* coins arrondis */
+  font-weight: bold;           /* texte en gras */
+  cursor: pointer;             /* pointeur souris */
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  display: inline-block;
+}
+
+.badge.accepted {
+  background-color: #35da2f;
+}
+
+.badge.pending {
+  background-color: #f8e026;
+}
+
+.badge.rejected {
+  background-color: #ea4040;
+}
+
+.badge.medical {
+  background-color: #f4c542;
+  color: black;
+}
+
+.badge.iscription {
+  background-color: #463d7d;
+}
+
+.badge.payment {
+  background-color: #cfcfcf;
+  color: #333;
+}
+
+.badge.reservation {
+  background-color: #a03c3c;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination select {
+  padding: 5px;
+}
+
+.pagination button {
+  border: none;
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #8d5c7c;
+  color: white;
+}

@@ -1,0 +1,27 @@
+<!-- confirm_email.html -->
+{% extends 'pages/base3.html' %}
+{% block content %}
+<div class="container">
+  <div class="registration-box">
+    <h2>تأكيد البريد الإلكتروني</h2>
+    <p class="subtitle">تحقق من بريدك الإلكتروني وأدخل الرمز المكون من 6 أرقام</p>
+
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <i class="fas fa-key icon"></i>
+        <input type="text" name="code" placeholder="أدخل الرمز المكون من 6 أرقام" required pattern="\d{6}" />
+      </div>
+      <button type="submit" class="confirm-btn">تأكيد</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

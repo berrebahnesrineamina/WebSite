@@ -1,0 +1,145 @@
+<!-- registration.html -->
+
+{% extends 'pages/base3.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="registration-box">
+
+    <div class="back-arrow">
+      <a href="{% url 'home' %}" title="العودة إلى الرئيسية">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+    </div>
+
+    <h2>التسجيل</h2>
+    <p class="subtitle">أكمل نموذج التسجيل للبدء بتجربتك معنا</p>
+
+    {% if messages %}
+      <ul class="message-list">
+        {% for message in messages %}
+          {% if 'registration' in message.tags %}
+            <li class="success-message">{{ message }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <form id="registrationForm" class="form-grid" method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+
+      <!-- السطر 1 -->
+      <div class="input-group">
+        <i class="fas fa-id-card icon"></i>
+        <input type="text" name="nin_number" placeholder="رقم الهوية الوطنية" required pattern="\d{18}" title="يجب أن يكون رقم الهوية 18 رقماً بالضبط" />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-phone icon"></i>
+        <input type="tel" name="phone_number" placeholder="رقم الهاتف" required pattern="0[5-7]\d{8}" title="أدخل رقم هاتف جزائري صالح يبدأ بـ 05 أو 06 أو 07" />
+      </div>
+
+      <!-- السطر 2 -->
+      <div class="input-group">
+        <i class="fas fa-calendar icon"></i>
+        <input type="date" name="birthday" placeholder="تاريخ الميلاد" required max="2007-01-01" />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-map-marker-alt icon"></i>
+        <select name="state" required>
+          <option value="" disabled selected>اختر الولاية</option>
+          <option value="خارج الجزائر">خارج الجزائر</option>
+          <option value="أدرار">أدرار</option>
+          <option value="الشلف">الشلف</option>
+          <option value="الأغواط">الأغواط</option>
+          <option value="أم البواقي">أم البواقي</option>
+          <option value="باتنة">باتنة</option>
+          <option value="بجاية">بجاية</option>
+          <option value="بسكرة">بسكرة</option>
+          <option value="بشار">بشار</option>
+          <option value="البليدة">البليدة</option>
+          <option value="البويرة">البويرة</option>
+          <option value="تمنراست">تمنراست</option>
+          <option value="تبسة">تبسة</option>
+          <option value="تلمسان">تلمسان</option>
+          <option value="تيارت">تيارت</option>
+          <option value="تيزي وزو">تيزي وزو</option>
+          <option value="الجزائر">الجزائر</option>
+          <option value="الجلفة">الجلفة</option>
+          <option value="جيجل">جيجل</option>
+          <option value="سطيف">سطيف</option>
+          <option value="سعيدة">سعيدة</option>
+          <option value="سكيكدة">سكيكدة</option>
+          <option value="سيدي بلعباس">سيدي بلعباس</option>
+          <option value="عنابة">عنابة</option>
+          <option value="قالمة">قالمة</option>
+          <option value="قسنطينة">قسنطينة</option>
+          <option value="المدية">المدية</option>
+          <option value="مستغانم">مستغانم</option>
+          <option value="المسيلة">المسيلة</option>
+          <option value="معسكر">معسكر</option>
+          <option value="ورقلة">ورقلة</option>
+          <option value="وهران">وهران</option>
+          <option value="البيض">البيض</option>
+          <option value="إليزي">إليزي</option>
+          <option value="برج بوعريريج">برج بوعريريج</option>
+          <option value="بومرداس">بومرداس</option>
+          <option value="الطارف">الطارف</option>
+          <option value="تندوف">تندوف</option>
+          <option value="تيسمسيلت">تيسمسيلت</option>
+          <option value="الوادي">الوادي</option>
+          <option value="خنشلة">خنشلة</option>
+          <option value="سوق أهراس">سوق أهراس</option>
+          <option value="تيبازة">تيبازة</option>
+          <option value="ميلة">ميلة</option>
+          <option value="عين الدفلى">عين الدفلى</option>
+          <option value="النعامة">النعامة</option>
+          <option value="عين تموشنت">عين تموشنت</option>
+          <option value="غرداية">غرداية</option>
+          <option value="غليزان">غليزان</option>
+          <option value="تقرت">تقرت</option>
+          <option value="جانت">جانت</option>
+          <option value="المغير">المغير</option>
+          <option value="المنيعة">المنيعة</option>
+        </select>
+      </div>
+
+      <!-- السطر 3 -->
+      <div class="input-group">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="family_name" placeholder="اسم العائلة" required pattern="^[\u0600-\u06FF\s]{2,30}$" title="يرجى إدخال الاسم بالأحرف العربية فقط (2 إلى 30 حرفاً)" />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-user icon"></i>
+        <input type="text" name="full_name" placeholder="الاسم الكامل" required pattern="^[\u0600-\u06FF\s]{2,50}$" title="يرجى إدخال الاسم الكامل بالأحرف العربية فقط (2 إلى 50 حرفاً)" />
+      </div>
+
+      <!-- السطر 4 -->
+      <div class="input-group">
+        <i class="fas fa-envelope icon"></i>
+        <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-flag icon"></i>
+        <select name="gender" required>
+          <option value="" disabled selected>اختر الجنس</option>
+          <option value="ذكر">ذكر</option>
+          <option value="أنثى">أنثى</option>
+        </select>
+      </div>
+
+      <!-- السطر 5 -->
+      <div class="input-group">
+        <i class="fas fa-lock icon"></i>
+        <input type="password" name="password" placeholder="كلمة المرور" required minlength="8" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}" title="8 أحرف على الأقل مع حرف كبير، حرف صغير، ورقم" />
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock icon"></i>
+        <input type="password" name="confirm_password" placeholder="تأكيد كلمة المرور" required />
+      </div>
+
+      <button type="submit" class="confirm-btn">تأكيد</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

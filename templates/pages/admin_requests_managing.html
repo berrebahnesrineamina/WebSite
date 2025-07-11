@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Members Dashboard</title>
+  <link rel="stylesheet" href="admin_requests_managing.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="profile">
+        <img src="images/man.jpg" alt="Profile">
+        <h2>Amine Tounsi</h2>
+        <p>aminetounsi@gmail.com</p>
+      </div>
+      <nav class="menu">
+        <ul>
+          <li><span>🏠</span> Dashboard</li>
+          <li class="active"><span>👥</span> Members</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div class="header">
+        <div class="search-bar">
+          <input type="text" placeholder="Search for user" />
+          <button>🔍</button>
+        </div>
+        <button class="logout">Log out</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>NIN</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Municipal</th>
+            <th>Phase</th>
+            <th>Contact</th>
+            <th>Participation’s NB</th>
+          </tr>
+        </thead>
+        <tbody id="memberTableBody">
+          <!-- Rows dynamically injected -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span>Display</span>
+        <select>
+          <option>12</option>
+          <option>24</option>
+        </select>
+        <button>&lt;</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>&gt;</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="admin_requests_managing.js"></script>
+</body>
+</html>

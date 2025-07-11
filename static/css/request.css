@@ -1,0 +1,134 @@
+/* Général */
+body {
+  background-color: #f1e6db;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Container de la boîte principale */
+.container {
+  background-color: #ffffff;
+  width: 400px;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+/* Titre */
+.container h1 {
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+/* Groupe de champ */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Champ de sélection personnalisé */
+.custom-select {
+  background-color: #c9a9b8;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+}
+
+.custom-select .icon {
+  margin-right: 10px;
+}
+
+.custom-select select {
+  background: transparent;
+  border: none;
+  color: rgb(39, 38, 38);
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+  appearance: none;
+}
+
+/* Upload box */
+.upload-box {
+  background: #f9f3f0;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 5px #cba5bc;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  position: relative;
+}
+
+.upload-box input[type="file"] {
+  display: none;
+}
+
+.upload-icon {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Zone de texte */
+textarea {
+  width: 95%;
+  height: 100px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f9f3f0;
+  box-shadow: 2px 2px 5px #cba5bc;
+  font-size: 14px;
+  resize: none;
+}
+
+/* Boutons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  width: 48%;
+  padding: 12px 0;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Bouton Accept */
+.accept {
+  background-color: #b68da7;
+  color: white;
+}
+
+.accept:hover {
+  background-color: #a07691;
+}
+
+/* Bouton Refuse */
+.refuse {
+  background-color: #eedcc9;
+  color: #333;
+}
+
+.refuse:hover {
+  background-color: #e5ceb8;
+}

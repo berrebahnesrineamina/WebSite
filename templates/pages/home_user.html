@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>إدارة طلباتي</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      direction: rtl;
+      background-color: #f9f7f8;
+    }
+
+    .sidebar {
+      background-color: #86577b;
+      width: 200px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .profile {
+      text-align: center;
+      padding: 0 10px 20px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
+    }
+
+    .profile h3 {
+      margin-top: 10px;
+      font-size: 16px;
+      word-break: break-word;
+    }
+
+    .profile p {
+      font-size: 12px;
+      word-break: break-word;
+    }
+
+    .nav {
+      background-color: white;
+      color: black;
+      width: 100%;
+      padding: 15px;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      cursor: default;
+      border-top: 1px solid #ddd;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      position: relative;
+      background-color: white;
+      overflow: hidden;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .main-header h2 {
+      font-size: 24px;
+    }
+
+    .main-header form button {
+      background-color: #a36b8d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .add-button {
+      margin-top: 20px;
+      background-color: #000b3e;
+      color: white;
+      padding: 7px 15px;
+      border-radius: 20px;
+      border: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .table {
+      margin-top: 30px;
+      width: 100%;
+      max-width: 700px;
+      overflow-y: auto;
+      height: 300px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table th, .table td {
+      padding: 10px;
+      text-align: right;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .badge {
+      padding: 5px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: white;
+      display: inline-block;
+    }
+
+    .grouped {
+      background-color: rgb(7, 189, 7);
+    }
+
+    .notyet {
+      background-color: #fdcf18;
+    }
+
+    .rejected {
+      background-color: rgb(232, 30, 3);
+    }
+
+    .scroll {
+      height: 250px;
+      overflow-y: scroll;
+    }
+
+    .scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .scroll::-webkit-scrollbar-thumb {
+      background-color: #b7649a;
+      border-radius: 10px;
+    }
+
+    .scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .delete-button {
+      background-color: rgb(240, 104, 0);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .delete-button:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="profile">
+      <h3>{{ client.full_name }}</h3>
+      <p>{{ client.email }}</p>
+    </div>
+    <div class="nav">
+      <span>الرئيسية</span>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="main-header">
+      <h2>إدارة طلباتي</h2>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-button">تسجيل الخروج</button>
+      </form>
+    </div>
+
+    <button class="add-button" id="addServiceBtn">إضافة طلب جديد +</button>
+
+    <div class="table scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>اسم الخدمة</th>
+            <th>رقم الخدمة</th>
+            <th>الحالة</th>
+            <th>الإجراء</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for service in services %}
+            <tr>
+              <td>{{ service.get_service_type_display }}</td>
+              <td>{{ service.id }}</td>
+              <td>
+                <span class="badge 
+                  {% if service.status == 'Approuvé' %}grouped
+                  {% elif service.status == 'Rejeté' %}rejected
+                  {% else %}notyet{% endif %}">
+                  {% if service.status == 'Approuvé' %}
+                    قبول
+                  {% elif service.status == 'Rejeté' %}
+                    رفض
+                  {% else %}
+                    قيد المعالجة
+                  {% endif %}
+                </span>
+              </td>
+              <td>
+                <form method="post" action="{% url 'delete_service' service.id %}" onsubmit="return confirm('هل أنت متأكد من حذف هذه الخدمة؟');">
+                  {% csrf_token %}
+                  <button type="submit" class="delete-button">حذف</button>
+                </form>
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4">لا توجد خدمات مضافة.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('addServiceBtn').addEventListener('click', function() {
+      window.location.href = 'add_service/';
+    });
+  </script>
+
+</body>
+</html>
