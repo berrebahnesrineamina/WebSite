@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-key')
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ['*',]  # ou le nom de ton domaine Render
+ALLOWED_HOSTS = ['*','167.172.244.253','www.wathaiqplus.dz','wathaiqplus.dz',]  # ou le nom de ton domaine Render
 
 
 INSTALLED_APPS = [
