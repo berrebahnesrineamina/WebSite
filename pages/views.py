@@ -65,9 +65,9 @@ def signup(request):
         )
 
         send_mail(
-            subject='Confirmation Code',
+            subject='Confirmation Code - وثائق+',
             message=f'Your confirmation code is: {code}',
-            from_email='noreply@yourdomain.com',
+            from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[email],
             fail_silently=False,
         )
@@ -123,9 +123,9 @@ def reset_password1(request):
             request.session['reset_code'] = code
 
             send_mail(
-                subject='Password Reset Code',
+                subject='Password Reset Code - وثائق+',
                 message=f'Your password reset code is: {code}',
-                from_email='noreply@yourdomain.com',
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[email],
                 fail_silently=False,
             )

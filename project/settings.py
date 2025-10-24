@@ -98,7 +98,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'example@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'password')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Professional email configuration
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@wathaiqplus.com')
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 logging.basicConfig(
     level=logging.DEBUG,
