@@ -107,7 +107,7 @@ class Command(BaseCommand):
                     gender=gender,
                     password=make_password(password)
                 )
-                self.stdout.write(f'Created test client: {full_name} ({email}) - Password: {password}')
+                self.stdout.write(f'Created test client: {email} - Password: {password}')
 
     def create_test_services(self):
         """Create sample service requests for test clients"""

@@ -63,14 +63,37 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-# Database configuration for DigitalOcean
-DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600, 
-        ssl_require=True,
-        default='sqlite:///db.sqlite3'  # Fallback for local development
-    )
-}
+# Database configuration
+import dj_database_url
+
+# Check if we're in production (DigitalOcean) or development
+# For local development, force SQLite even if DATABASE_URL exists
+if os.getenv('DATABASE_URL') and not os.getenv('FORCE_SQLITE'):
+    try:
+        # Production database (PostgreSQL on DigitalOcean)
+        DATABASES = {
+            'default': dj_database_url.config(
+                conn_max_age=600, 
+                ssl_require=True
+            )
+        }
+    except Exception as e:
+        print(f"PostgreSQL connection failed: {e}")
+        print("Falling back to SQLite for local development")
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    # Development database (SQLite)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

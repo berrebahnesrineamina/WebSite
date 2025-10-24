@@ -4,10 +4,9 @@ from .models import Client, PendingClient, Service
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email', 'nin_number', 'phone_number', 'state', 'gender')
-    list_filter = ('state', 'gender', 'created_at')
+    list_filter = ('state', 'gender')
     search_fields = ('full_name', 'email', 'nin_number', 'phone_number')
-    readonly_fields = ('created_at',)
-    ordering = ('-created_at',)
+    ordering = ('full_name',)
 
 @admin.register(PendingClient)
 class PendingClientAdmin(admin.ModelAdmin):

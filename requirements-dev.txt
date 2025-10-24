@@ -1,0 +1,16 @@
+# Development requirements (without PostgreSQL)
+asgiref==3.8.1
+dj-database-url==3.0.1
+Django==5.2
+gunicorn==23.0.0
+packaging==25.0
+pillow==11.2.1
+python-dotenv==1.1.0
+sqlparse==0.5.3
+typing_extensions==4.13.2
+tzdata==2025.2
+whitenoise==6.9.0
+
+# Development tools
+django-debug-toolbar==4.2.0
+django-extensions==3.2.3
