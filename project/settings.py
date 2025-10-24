@@ -67,25 +67,20 @@ WSGI_APPLICATION = 'project.wsgi.application'
 import dj_database_url
 
 # Check if we're in production (DigitalOcean) or development
-# For local development, force SQLite even if DATABASE_URL exists
-if os.getenv('DATABASE_URL') and not os.getenv('FORCE_SQLITE'):
-    try:
-        # Production database (PostgreSQL on DigitalOcean)
-        DATABASES = {
-            'default': dj_database_url.config(
-                conn_max_age=600, 
-                ssl_require=True
-            )
-        }
-    except Exception as e:
-        print(f"PostgreSQL connection failed: {e}")
-        print("Falling back to SQLite for local development")
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
+if os.getenv('DATABASE_URL'):
+    # Production database (PostgreSQL)
+    # Parse the DATABASE_URL and modify SSL settings
+    db_config = dj_database_url.parse(os.getenv('DATABASE_URL'))
+    
+    # Force SSL to False for compatibility with some hosting providers
+    if 'sslmode' in db_config.get('OPTIONS', {}):
+        db_config['OPTIONS']['sslmode'] = 'disable'
+    else:
+        db_config['OPTIONS'] = {'sslmode': 'disable'}
+    
+    DATABASES = {
+        'default': db_config
+    }
 else:
     # Development database (SQLite)
     DATABASES = {
