@@ -5,9 +5,9 @@ Professional email settings for production
 
 # Professional email configuration
 EMAIL_CONFIG = {
-    'DEFAULT_FROM_EMAIL': 'noreply@wathaiqplus.com',
+    'DEFAULT_FROM_EMAIL': 'noreply@wathaiqplus.space',
     'DEFAULT_FROM_NAME': 'وثائق+ (Wathaiq Plus)',
-    'REPLY_TO_EMAIL': 'support@wathaiqplus.com',
+    'REPLY_TO_EMAIL': 'support@wathaiqplus.space',
 }
 
 # Email templates
