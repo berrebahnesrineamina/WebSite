@@ -1,0 +1,15 @@
+# DigitalOcean Environment Variables Template
+# Copy these to your DigitalOcean App Platform environment variables
+
+# Remove or comment out the old Render.com database
+# DATABASE_URL=postgresql://wathaiqplus_db_user:KJ7ICkUIu1jJ4yOhzaCWJltuTbTJCvVw@dpg-d1ki1kfdiees73ei97a0-a.oregon-postgres.render.com/wathaiqplus_db
+
+# Add your DigitalOcean managed database URL
+# Replace with your actual database details:
+DIGITALOCEAN_DATABASE_URL=postgresql://doadmin:YOUR_PASSWORD@db-postgresql-nyc1-12345-do-user-123456-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+
+# Keep your other environment variables
+SECRET_KEY=django-insecure-h@m$&10ak^bt#%#n%ewkp%($inwy+nxl306(ksdwt5$*k37b!1
+DEBUG=False
+EMAIL_HOST_USER=fakhreddinechaib@gmail.com
+EMAIL_HOST_PASSWORD=qnml iyay rgbh phwl

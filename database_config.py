@@ -1,6 +1,6 @@
 """
-Database configuration helper for DigitalOcean deployment
-Handles SSL/TLS requirements for different database providers
+Database configuration for DigitalOcean deployment
+Configured to use DigitalOcean managed database instead of Render.com
 """
 import os
 import dj_database_url
@@ -10,35 +10,36 @@ BASE_DIR = Path(__file__).resolve().parent
 
 def get_database_config():
     """
-    Get database configuration based on environment
-    Handles SSL requirements for different providers
+    Get database configuration for DigitalOcean deployment
+    Uses DigitalOcean managed database instead of Render.com
     """
-    if os.getenv('DATABASE_URL'):
-        # Production database (PostgreSQL)
-        db_config = dj_database_url.parse(os.getenv('DATABASE_URL'))
-        
-        # Check if it's a Render.com database (requires SSL)
-        if 'render.com' in db_config.get('HOST', ''):
-            # Render.com requires SSL
-            db_config['OPTIONS'] = {
-                'sslmode': 'require',
-            }
-        elif 'digitalocean.com' in db_config.get('HOST', ''):
-            # DigitalOcean managed database
-            db_config['OPTIONS'] = {
-                'sslmode': 'require',
-            }
-        else:
-            # Other providers - try without SSL first
-            db_config['OPTIONS'] = {
-                'sslmode': 'prefer',
-            }
-        
+    # Check for DigitalOcean database URL first
+    digitalocean_db_url = os.getenv('DIGITALOCEAN_DATABASE_URL')
+    render_db_url = os.getenv('DATABASE_URL')
+    
+    if digitalocean_db_url:
+        # Use DigitalOcean managed database (preferred)
+        print("Using DigitalOcean managed database")
+        db_config = dj_database_url.parse(digitalocean_db_url)
+        db_config['OPTIONS'] = {
+            'sslmode': 'require',
+        }
+        return {
+            'default': db_config
+        }
+    elif render_db_url and 'render.com' not in render_db_url:
+        # Use other database if not Render.com
+        print("Using alternative database (not Render.com)")
+        db_config = dj_database_url.parse(render_db_url)
+        db_config['OPTIONS'] = {
+            'sslmode': 'prefer',
+        }
         return {
             'default': db_config
         }
     else:
-        # Development database (SQLite)
+        # Development database (SQLite) or fallback
+        print("Using SQLite database (development/fallback)")
         return {
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
