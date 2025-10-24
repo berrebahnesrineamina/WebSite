@@ -64,31 +64,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database configuration
-import dj_database_url
+from database_config import get_database_config
 
-# Check if we're in production (DigitalOcean) or development
-if os.getenv('DATABASE_URL'):
-    # Production database (PostgreSQL)
-    # Parse the DATABASE_URL and modify SSL settings
-    db_config = dj_database_url.parse(os.getenv('DATABASE_URL'))
-    
-    # Force SSL to False for compatibility with some hosting providers
-    if 'sslmode' in db_config.get('OPTIONS', {}):
-        db_config['OPTIONS']['sslmode'] = 'disable'
-    else:
-        db_config['OPTIONS'] = {'sslmode': 'disable'}
-    
-    DATABASES = {
-        'default': db_config
-    }
-else:
-    # Development database (SQLite)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+DATABASES = get_database_config()
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
