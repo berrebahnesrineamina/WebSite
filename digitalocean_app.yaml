@@ -1,0 +1,35 @@
+# DigitalOcean App Platform Configuration
+name: wathaiq-plus
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: your-username/WebSite
+    branch: main
+  run_command: gunicorn project.wsgi:application --bind 0.0.0.0:8080
+  environment_slug: python
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 8080
+  routes:
+  - path: /
+  envs:
+  - key: DJANGO_SETTINGS_MODULE
+    value: project.settings
+  - key: DEBUG
+    value: "False"
+  - key: SECRET_KEY
+    value: your-secret-key-here
+  - key: DATABASE_URL
+    value: your-database-url-here
+  - key: EMAIL_HOST_USER
+    value: your-email@domain.com
+  - key: EMAIL_HOST_PASSWORD
+    value: your-email-password
+  health_check:
+    http_path: /
+    initial_delay_seconds: 10
+    period_seconds: 10
+    timeout_seconds: 5
+    success_threshold: 1
+    failure_threshold: 3

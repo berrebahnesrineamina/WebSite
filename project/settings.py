@@ -12,7 +12,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", 'django-insecure-key')
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = ['localhost','167.172.244.253','wathaiqplus.space','www.wathaiqplus.space']  # ou le nom de ton domaine Render
+ALLOWED_HOSTS = [
+    'localhost',
+    '167.172.244.253',
+    'wathaiqplus.space',
+    'www.wathaiqplus.space',
+    '*.digitalocean.com',
+    '*.ondigitalocean.app',
+    # Add your DigitalOcean app domain here
+]
 
 
 INSTALLED_APPS = [
@@ -55,9 +63,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-# Database for Render (uses DATABASE_URL env var if set)
+# Database configuration for DigitalOcean
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    'default': dj_database_url.config(
+        conn_max_age=600, 
+        ssl_require=True,
+        default='sqlite:///db.sqlite3'  # Fallback for local development
+    )
 }
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

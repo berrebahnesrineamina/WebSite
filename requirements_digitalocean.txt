@@ -1,0 +1,20 @@
+# DigitalOcean App Platform Requirements
+# Core Django dependencies
+Django==5.2
+gunicorn==23.0.0
+psycopg2-binary==2.9.10
+dj-database-url==3.0.1
+python-dotenv==1.1.0
+whitenoise==6.9.0
+Pillow==11.2.1
+
+# Additional production dependencies
+django-cors-headers==4.3.1
+django-environ==0.11.2
+django-storages==1.14.2
+boto3==1.34.0
+
+# Development and testing
+django-debug-toolbar==4.2.0
+factory-boy==3.3.0
+pytest-django==4.7.0
